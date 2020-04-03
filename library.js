@@ -18,57 +18,60 @@ function Book(title, author, pages, imageLink, read, id) {
 
 function render(){
     
-        saveToLocalData();
+        if (localStorage.getItem('books') == null)
+        {
+            saveToLocalData();
+        }
         let myLibrary_deSerialized = JSON.parse(localStorage.getItem('books'));
 
         myLibrary = myLibrary_deSerialized;
-        if(myLibrary != null){
-            for (let i = 0; i < myLibrary.length; i++) {
+
+        for (let i = 0; i < myLibrary.length; i++) {
+        
+            let title = myLibrary[i]['title'];
             
-                let title = myLibrary[i]['title'];
-                
-                let author = myLibrary[i]['author'];
-                let pages = myLibrary[i]['pages'];
-                let imageLink = myLibrary[i]['imageLink'];
-                let read = myLibrary[i]['read'];
-                let id = myLibrary[i]['id'];
-                let checkbox
-                if (read == true){
-                    checkbox = "checked";
-                }
-                else{
-                    checkbox = "";
-                }
-    
-                const div = document.createElement('div')
-                div.className = 'book-container';
-                div.innerHTML = `<div data-id=${id} class="book-card">
-                    <img src="${imageLink}" alt="${title}" style="width: 100%">
-                    <div id=completed-banner>Completed</div>
-                    <div class="card-description">
-                        <a href="#" id="delete-button" onClick="DeleteBook(${id})">X</a>
-                        <h2>${title}</h2>
-                        <h3>By: ${author}</h3>
-                        <p>Pages: ${pages}</p>
-                        <input type="checkbox" ${checkbox} name="Completed?" id="Completed?" onClick="markBookComplete(this, ${id});">Completed?
-                        
-                    </div>
-            
-                </div>`;
-            document.getElementById('container').appendChild(div);
-    
-            let banner = document.querySelectorAll(`[data-id = '${id}']`).item(0).getElementsByTagName('div')[0];
-           
+            let author = myLibrary[i]['author'];
+            let pages = myLibrary[i]['pages'];
+            let imageLink = myLibrary[i]['imageLink'];
+            let read = myLibrary[i]['read'];
+            let id = myLibrary[i]['id'];
+            let checkbox
             if (read == true){
-                banner.style.display = 'block';
+                checkbox = "checked";
             }
             else{
-                banner.style.display = 'none';
-    
+                checkbox = "";
             }
-     
-            }
+
+            const div = document.createElement('div')
+            div.className = 'book-container';
+            div.innerHTML = `<div data-id=${id} class="book-card">
+                <img src="${imageLink}" alt="${title}" style="width: 100%">
+                <div id=completed-banner>Completed</div>
+                <div class="card-description">
+                    <a href="#" id="delete-button" onClick="DeleteBook(${id})">X</a>
+                    <h2>${title}</h2>
+                    <h3>By: ${author}</h3>
+                    <p>Pages: ${pages}</p>
+                    <input type="checkbox" ${checkbox} name="Completed?" id="Completed?" onClick="markBookComplete(this, ${id});">Completed?
+                    
+                </div>
+        
+            </div>`;
+        document.getElementById('container').appendChild(div);
+
+        let banner = document.querySelectorAll(`[data-id = '${id}']`).item(0).getElementsByTagName('div')[0];
+        
+        if (read == true){
+            banner.style.display = 'block';
         }
+        else{
+            banner.style.display = 'none';
+
+        }
+    
+        }
+        
       
         
 }
