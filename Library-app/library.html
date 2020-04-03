@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/6e2c075a9e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+</head>
+<body onload="render()">
+    
+    
+   
+    <div id="container">
+        <div class="add-button">
+   
+        </div>
+    </div> 
+        
+    <div id="form-container">
+        <form action="" id="book-form" >
+            <a id="delete-button"href="#" onclick="hideForm()">X</a>
+            <h3>Add a book!</h3>
+            <input type="text" placeholder="Title" id="title" class="input" >
+            <input type="text" placeholder="Author" id="author" class="input">
+            <input type="text" placeholder="Pages" id="pages" class="input">
+            <input type="text" placeholder="Image Link" id=image-link class="input">
+            <br><input type="button" value="Submit"name="submit" onclick="createNewBookFromForm(); hideForm();" class="submit">
+        </form>
+    </div>
+  
+    <div id="Header">
+        <h2>Adrian's Library </h2>
+        <a class="add-icon far fa-plus-square"href="#" onClick="showForm();"></a>
+    </div>
+    
+    
+<script src="library.js"></script>
+</body>
+</html>
