@@ -18,7 +18,7 @@ function Book(title, author, pages, imageLink, read, id) {
 
 function render(){
     
-
+        saveToLocalData();
         let myLibrary_deSerialized = JSON.parse(localStorage.getItem('books'));
 
         myLibrary = myLibrary_deSerialized;
